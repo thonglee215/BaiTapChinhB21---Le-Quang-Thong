@@ -1,21 +1,21 @@
-function Employee(acc,fullName,email,pass,day,salary,type,hour ){
+function Employee(acc,fullName,email,pass,day,salary,position,hour ){
     this.acc = acc;
     this.fullName = fullName;
     this.email = email;
     this.pass = pass;
     this.day = day;
     this.salary = salary;
-    this.type = type;
+    this.position = position;
     this.hour = hour;
     this.total = 0;
     this.rank = "";
 
     this.totalSalary = function (){
-        if (this.type == "Sếp") {
+        if (this.position == "Sếp") {
             this.total = this.salary*3;
-        } else if (this.type == "Trưởng phòng") {
+        } else if (this.position == "Trưởng phòng") {
             this.total = this.salary*2;
-        } else if (this.type == "Nhân viên") {
+        } else if (this.position == "Nhân viên") {
             this.total = this.salary;
         }
     }
