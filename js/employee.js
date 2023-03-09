@@ -30,8 +30,5 @@ function Employee(acc,fullName,email,pass,day,salary,position,hour ){
         } else if (this.hour < 160) {
             this.rank = "Trung bình";
         }
-    }
-
-   
-
+    }    
 }
