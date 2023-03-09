@@ -120,4 +120,36 @@ function Validation() {
             return false;
         }
     }
+
+    this.checkDayFormat = function (valueInput, spanId, message) {
+        var pattern = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+        if (valueInput.match(pattern)) {
+            document.getElementById(spanId).style.display = "none";
+            document.getElementById(spanId).innerHTML = "";
+            return true;
+        } else {
+            document.getElementById(spanId).style.display = "block";
+            document.getElementById(spanId).innerHTML = message;
+            return false;
+        }
+
+    }
+
+    this.checkDayCount = function (valueInput, spanId, message) {
+        var oneDay = 24 * 60 * 60 * 1000; 
+        var startDay = new Date(valueInput);
+        var currentDate = new Date();
+        var count = Math.round((currentDate - startDay) / oneDay);
+        console.log(count);
+        if (count >= 30) {
+            document.getElementById(spanId).style.display = "none";
+            document.getElementById(spanId).innerHTML = "";
+            return true;
+        } else {
+            document.getElementById(spanId).style.display = "block";
+            document.getElementById(spanId).innerHTML = message;
+            return false;
+        }
+    }
 }
+

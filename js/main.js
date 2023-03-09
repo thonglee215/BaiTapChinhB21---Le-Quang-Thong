@@ -42,6 +42,8 @@ function empAdd() {
     isValid &= validation.checkEmpty(hour, "tbGiolam", "Giờ làm việc nhân viên không được để trống") &&
         validation.checkHour(hour, "tbGiolam", "Giờ làm việc phải từ 80 - 120 giờ");
 
+    isValid &= validation.checkDayFormat(day, "tbNgay", "Không đúng định dạng mm/dd/yyyy") &&
+        validation.checkDayCount(day, "tbNgay", "Nhân viên phải làm trên 30 ngày");
 
     if (isValid) {
         var emp = new Employee(acc, fullName, email, pass, day, salary, position, hour);
@@ -116,47 +118,51 @@ function check(acc) {
 
 // UPDATE EMPLOYEE
 function update() {
-        var acc = getEle("tknv").value;
-        var fullName = getEle("name").value;
-        var email = getEle("email").value;
-        var pass = getEle("password").value;
-        var day = getEle("datepicker").value;
-        var salary = getEle("luongCB").value;
-        var position = getEle("chucvu").value;
-        var hour = getEle("gioLam").value;
-        
-        var isValid = true;
+    var acc = getEle("tknv").value;
+    var fullName = getEle("name").value;
+    var email = getEle("email").value;
+    var pass = getEle("password").value;
+    var day = getEle("datepicker").value;
+    var salary = getEle("luongCB").value;
+    var position = getEle("chucvu").value;
+    var hour = getEle("gioLam").value;
 
-        isValid &= validation.checkEmpty(acc, "tbTKNV", "Tài khoản nhân viên không được để trống") &&
-            validation.checkAccChar(acc, "tbTKNV", "Tài khoản nhân viên từ phải 4 - 6 ký số và phải có ký tự in hoa",);
-    
-        isValid &= validation.checkEmpty(fullName, "tbTen", "Tên nhân viên không được để trống") &&
-            validation.checkName(fullName, "tbTen", "Tên nhân viên không hợp lệ");
-    
-        isValid &= validation.checkEmpty(email, "tbEmail", "Email nhân viên không được để trống") &&
-            validation.checkMail(email, "tbEmail", "Email không hợp lệ");
-    
-        isValid &= validation.checkEmpty(pass, "tbMatKhau", "Mật khẩu nhân viên không được để trống") &&
-            validation.checkPass(pass, "tbMatKhau", "Mật khẩu không hợp lệ");
-    
-        isValid &= validation.checkEmpty(day, "tbNgay", "Ngày làm việc nhân viên không được để trống");
-    
-        isValid &= validation.checkEmpty(salary, "tbLuongCB", "Lương cơ bản nhân viên không được để trống") &&
-            validation.checkSalary(salary, "tbLuongCB", "Lương cơ bản nhân viên phải từ 1.000.000 - 20.000.000 VNĐ");
-    
-        isValid &= validation.checkSelected(position, "tbChucVu", "Chức vụ không hợp lệ");
-    
-        isValid &= validation.checkEmpty(hour, "tbGiolam", "Giờ làm việc nhân viên không được để trống") &&
-            validation.checkHour(hour, "tbGiolam", "Giờ làm việc phải từ 80 - 120 giờ");
-    
-        if (isValid) {
+    var isValid = true;
+
+    isValid &= validation.checkEmpty(acc, "tbTKNV", "Tài khoản nhân viên không được để trống") &&
+        validation.checkAccChar(acc, "tbTKNV", "Tài khoản nhân viên từ phải 4 - 6 ký số và phải có ký tự in hoa",);
+
+    isValid &= validation.checkEmpty(fullName, "tbTen", "Tên nhân viên không được để trống") &&
+        validation.checkName(fullName, "tbTen", "Tên nhân viên không hợp lệ");
+
+    isValid &= validation.checkEmpty(email, "tbEmail", "Email nhân viên không được để trống") &&
+        validation.checkMail(email, "tbEmail", "Email không hợp lệ");
+
+    isValid &= validation.checkEmpty(pass, "tbMatKhau", "Mật khẩu nhân viên không được để trống") &&
+        validation.checkPass(pass, "tbMatKhau", "Mật khẩu không hợp lệ");
+
+    isValid &= validation.checkEmpty(day, "tbNgay", "Ngày làm việc nhân viên không được để trống");
+
+    isValid &= validation.checkEmpty(salary, "tbLuongCB", "Lương cơ bản nhân viên không được để trống") &&
+        validation.checkSalary(salary, "tbLuongCB", "Lương cơ bản nhân viên phải từ 1.000.000 - 20.000.000 VNĐ");
+
+    isValid &= validation.checkSelected(position, "tbChucVu", "Chức vụ không hợp lệ");
+
+    isValid &= validation.checkEmpty(hour, "tbGiolam", "Giờ làm việc nhân viên không được để trống") &&
+        validation.checkHour(hour, "tbGiolam", "Giờ làm việc phải từ 80 - 120 giờ");
+
+    isValid &= validation.checkDayFormat(day, "tbNgay", "Không đúng định dạng mm/dd/yyyy") &&
+    validation.checkDayCount(day, "tbNgay", "Nhân viên phải làm trên 30 ngày");;
+
+    if (isValid) {
         var emp = new Employee(acc, fullName, email, pass, day, salary, position, hour);
         emp.totalSalary();
         emp.rank();
         employeeList.updateEmp(emp);
         setLocal(employeeList.empArr);
-        getLocal(employeeList.empArr);}
-    
+        getLocal(employeeList.empArr);
+    }
+
 }
 getEle("btnCapNhat").onclick = update;
 
