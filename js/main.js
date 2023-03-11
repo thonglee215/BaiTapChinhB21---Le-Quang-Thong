@@ -70,7 +70,7 @@ function showList(array) {
                 <td>${emp.total}</td>
                 <td>${emp.rank}</td>
                 <td>
-                    <button onclick="check('${emp.acc}')" class= "btn btn-info" id= "open">Xem</button>
+                    <button data-toggle="modal" data-target="#myModal" onclick="check('${emp.acc}')" class= "btn btn-info" id= "open">Xem</button>
                     <button onclick="del('${emp.acc}')" class= "btn btn-danger" >Xóa</button>
                 </td>
             </tr>`
